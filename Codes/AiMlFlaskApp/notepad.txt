@@ -1,0 +1,3 @@
+precision = true_positive/(true_positive+false_positive)
+
+The Precision is one indicator of a machine learning model's performance – the quality of a positive prediction made by the model.
