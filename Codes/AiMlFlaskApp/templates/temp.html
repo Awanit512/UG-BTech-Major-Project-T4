@@ -1,0 +1,354 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% raw %}
+<!--  {% extends "base.html" %}
+
+{% block content %}
+<div class="column is-4 is-offset-4">
+    <h3 class="title">Sign Up</h3>
+    <div class="box">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="notification is-danger">
+                    {{ messages[0] }}<br> Go to <a href="{{ url_for('auth.login') }}">login page</a>.
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <form method="POST" action="/checktweet">
+            <div class="field">
+                <div class="control">
+                    <input class="input is-large" type="email" name="email" placeholder="Email" autofocus="">
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="control">
+                    <input class="input is-large" type="text" name="name" placeholder="Name" autofocus="">
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="control">
+                    <input class="input is-large" type="password" name="password" placeholder="Password">
+                </div>
+            </div>
+
+            <button class="button is-block is-info is-large is-fullwidth">Sign Up</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+Simple Tweet Forms 
+<form>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1">
+  </div>
+  <div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+
+
+Switches
+A switch has the markup of a custom checkbox but uses the .custom-switch class to render a toggle switch. Switches also support the disabled attribute.
+
+<div class="custom-control custom-switch">
+  <input type="checkbox" class="custom-control-input" id="customSwitch1">
+  <label class="custom-control-label" for="customSwitch1">Toggle this switch element</label>
+</div>
+<div class="custom-control custom-switch">
+  <input type="checkbox" class="custom-control-input" disabled id="customSwitch2">
+  <label class="custom-control-label" for="customSwitch2">Disabled switch element</label>
+</div>
+
+
+File browser
+The file input is the most gnarly of the bunch and requires additional JavaScript if you’d like to hook them up with functional Choose file… and selected file name text.
+
+<div class="custom-file">
+  <input type="file" class="custom-file-input" id="customFile">
+  <label class="custom-file-label" for="customFile">Choose file</label>
+</div> -->
+
+
+
+<!-- <!doctype html><html lang="en"> -->
+
+
+
+<!-- 
+    <head><meta charset="utf-8"><title>Text Filtering API Demo</title><meta content="IE=edge" http-equiv="X-UA-Compatible"><meta name="description" content="See how our Text moderation API works by testing it directly from your browser" /><link rel="canonical" href="https://sightengine.com/demo-text" /><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="index, follow"><link rel="shortcut icon" type="image/png" href="https://sightengine.com/favicon.ico" sizes="16x16" /><link rel="shortcut icon" type="image/png" href="https://sightengine.com/favicon32.ico" sizes="32x32" /><link rel="shortcut icon" type="image/png" href="https://sightengine.com/favicon64.ico" sizes="64x64" /><link rel="shortcut icon" type="image/png" href="https://sightengine.com/favicon128.ico" sizes="128x128" /><style>@font-face {font-family: 'Lato';font-style: normal;font-weight: 300;font-display: swap;src: url(https://sightengine.com/assets/fonts/lato/LatoLatin-Light.eot);src:local('Lato Light'),local('Lato-Light'), url(https://sightengine.com/assets/fonts/lato/LatoLatin-Light.woff2) format('woff2'), url(https://sightengine.com/assets/fonts/lato/LatoLatin-Light.woff) format('woff'), url(https://sightengine.com/assets/fonts/lato/LatoLatin-Light.ttf) format('truetype');}@font-face {font-family: 'Lato';font-style: normal;font-weight: 400;font-display: swap;src: url(https://sightengine.com/assets/fonts/lato/LatoLatin-Regular.eot);src:local('Lato Regular'),local('Lato-Regular'), url(https://sightengine.com/assets/fonts/lato/LatoLatin-Regular.woff2) format('woff2'), url(https://sightengine.com/assets/fonts/lato/LatoLatin-Regular.woff) format('woff'), url(https://sightengine.com/assets/fonts/lato/LatoLatin-Regular.ttf) format('truetype');}@font-face {font-family: 'Lato';font-style: normal;font-weight: 700;font-display: swap;src: url(https://sightengine.com/assets/fonts/lato/LatoLatin-Bold.eot);src:local('Lato Bold'),local('Lato-Bold'), url(https://sightengine.com/assets/fonts/lato/LatoLatin-Bold.woff2) format('woff2'), url(https://sightengine.com/assets/fonts/lato/LatoLatin-Bold.woff) format('woff'), url(https://sightengine.com/assets/fonts/lato/LatoLatin-Bold.ttf) format('truetype');}@font-face {font-family: 'Roboto Slab';font-style: normal;font-weight: 300;font-display: swap;src: url(' https://sightengine.com/assets/fonts/rs/roboto-slab-v7-latin-300.eot');src: local('Roboto Slab Light'), local('RobotoSlab-Light'),url(' https://sightengine.com/assets/fonts/rs/roboto-slab-v7-latin-300.eot?#iefix') format('embedded-opentype'),url(' https://sightengine.com/assets/fonts/rs/roboto-slab-v7-latin-300.woff2') format('woff2'),url(' https://sightengine.com/assets/fonts/rs/roboto-slab-v7-latin-300.woff') format('woff'),url(' https://sightengine.com/assets/fonts/rs/roboto-slab-v7-latin-300.ttf') format('truetype'),url(' https://sightengine.com/assets/fonts/rs/roboto-slab-v7-latin-300.svg#RobotoSlab') format('svg');}@font-face {font-family: 'Roboto Slab';font-style: normal;font-weight: 700;font-display: swap;src: url(' https://sightengine.com/assets/fonts/rs/roboto-slab-v7-latin-700.eot');src: local('Roboto Slab Bold'), local('RobotoSlab-Bold'),url(' https://sightengine.com/assets/fonts/rs/roboto-slab-v7-latin-700.eot?#iefix') format('embedded-opentype'),url(' https://sightengine.com/assets/fonts/rs/roboto-slab-v7-latin-700.woff2') format('woff2'),url(' https://sightengine.com/assets/fonts/rs/roboto-slab-v7-latin-700.woff') format('woff'),url(' https://sightengine.com/assets/fonts/rs/roboto-slab-v7-latin-700.ttf') format('truetype'),url(' https://sightengine.com/assets/fonts/rs/roboto-slab-v7-latin-700.svg#RobotoSlab') format('svg');}*{margin:0;padding:0}html{height:100%;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}b,strong{font-weight:700;-webkit-font-smoothing:antialiased}body{color:#222;background-color:#f6f9fc;height:100%;font-family:Lato,'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300}a{color:#367f8e;text-decoration:none}a.cta{font-weight:600}a img{border:none}input[type=email],input[type=password],input[type=text],input[type=url],option,select{font-family:Lato,'Helvetica Neue',Helvetica,Arial,serif;font-size:18px;font-weight:300;padding:10px 12px;width:300px;max-width:100%;box-sizing:border-box;-webkit-appearance:none;appearance:none;border-radius:3px;border:1px solid #ddd;color:#222}textarea{font-family:Lato,'Helvetica Neue',Helvetica,Arial,serif;padding:10px 12px;font-size:16px;border:1px solid #ddd}p,table,ul{font-size:18px;color:#444;margin-bottom:6px;font-weight:300}p,ul{line-height:1.4em}li{list-style-type:none}label{margin-top:14px;display:block}h1,h2,h3,h4,h5,h6{cursor:default;font-weight:700;-webkit-font-smoothing:antialiased}h1{font-size:30px;margin-bottom:10px;color:#1b1b1b}h2{font-size:24px;margin:40px 0}h3{font-size:24px}h4{font-size:18px;margin:20px 0 10px 0}h5{font-size:24px;color:#444;margin:30px 0 10px 0}h6{font-size:18px;font-weight:400;margin:20px 0 10px 0}#menu{color:#fff;margin-top:0;right:40px;position:absolute;display:block}#menu li{display:inline;padding:0 6px}.show-menu-icon{display:none}#menu a.headlk{font-size:14px;font-weight:700;line-height:48px;white-space:nowrap;letter-spacing:.1px;-webkit-font-smoothing:antialiased}#menu .dd-prod-title{font-size:15px;font-weight:400}#menu .dd-prod-desc{font-size:12px;line-height:20px}#menu a{display:inline-block;padding:6px 12px}#menu .btn{line-height:1.42857}#menu-link img{margin:17px 5px 0 0}.dropdown{position:relative;display:inline-block;padding-bottom:5px}.dropdown-content{display:none;z-index:1;transition:all .3s ease-in-out 0s,visibility 0s linear .3s,z-index 0s linear 10ms;position:absolute;background-color:#fff;width:350px;box-shadow:0 8px 16px 0 rgba(0,0,0,.2);padding:0;z-index:1}.dropdown:hover .dropdown-content{display:block}#menu .dropdown-content-list li{padding:0;display:block;cursor:pointer}#menu .dropdown-content-list li:hover{background-color:#f9f9fd}#banner .dropdown-content a{color:#4d4845}li.dropdown a{display:inline}.dropdown svg{fill:#0b1e24}#menu a:not(.btn){color:#0b1e24}#banner.whitetext #menu .dropdown-content-list li a{color:#0b1e24}#banner.whitetext #menu a{color:#fff}#banner.whitetext .dropdown svg{fill:#fff}@media (max-width:850px){#menu{display:none}.show-menu-icon{display:inline;line-height:55px;position:absolute;right:10px}}#mobile-nav-container{display:none;padding:10px;position:absolute;top:0;left:0;width:100%;z-index:150;box-sizing:border-box}.fixed-banner #mobile-nav-container{position:fixed;height:100vh;overflow-y:scroll;background-color:rgba(200,210,220,.4)}.fixed-banner.show-mobile-nav{overflow:hidden}#mobile-nav-container.active{display:block}#mobile-nav{position:relative;overflow:hidden;border-radius:10px;box-shadow:0 50px 100px -20px rgba(50,50,93,.25),0 30px 60px -30px rgba(0,0,0,.3);background:#fff}#mobile-nav section{padding:20px}#mobile-nav h2{text-transform:uppercase;color:#90aabb;font-family:Lato,'Helvetica Neue',Helvetica,Arial,sans-serif;margin:10px 0 10px 0;font-size:12px}#mobile-nav ul{display:grid;grid:auto/repeat(2,1fr);margin:0}#mobile-nav ul.onecolumn{grid:auto/repeat(1,1fr)}#mobile-nav li,#mobile-nav li a{color:#333;line-height:18px}#mobile-nav li{font-size:16px;font-weight:400;padding:8px 0}#mobile-closemenu{position:absolute;top:8px;right:8px;border:none;outline:0;background:0 0}#mobile-nav .separator{width:50%;margin:auto;border-top:1px solid #f0f0f0}#ov-container{width:100%;position:relative;overflow:hidden;min-height:70%;min-height:-webkit-calc(100% - 300px);min-height:-moz-calc(100% - 300px);min-height:calc(100% - 300px)}.fixed-banner #ov-container{margin-top:90px}.fixed-banner #banner{z-index:100;position:fixed;top:0;transition:all .3s}.container{width:1100px;margin:0 auto;padding:30px 0 60px 0;position:relative;box-sizing:border-box}.container-menu{padding:0 40px}#title{position:absolute;display:block;top:15px}#banner{height:60px;width:100%;cursor:default;background-color:#fff;box-shadow:0 1px 3px rgba(41,70,97,.15)}#banner.transparent{background-color:transparent;box-shadow:none}#banner.gradient{background-color:transparent;background:linear-gradient(0deg,rgba(0,0,0,0) 0,rgba(0,0,0,.4) 100%);box-shadow:none}.subh2{font-size:16px;padding:10px 0;border-bottom:1px solid #ddd;margin-bottom:30px}section.center,section.center p{text-align:center}section.title .container{padding-top:60px}section.title h1{font-size:38px;color:#33312f}section.dark{color:#fff;background-color:#12849a;-webkit-font-smoothing:antialiased}.row:after{display:block;clear:both;content:" "}.col2,.col2-700,.col2-900{width:50%;position:relative}.col3{width:33.33%}.col2,.col2-700,.col2-900,.col3{float:left;padding:0;box-sizing:border-box}.col2-700:first-child,.col2-900:first-child,.col2:first-child{padding-right:20px}.col2-700:last-child,.col2-900:last-child,.col2:last-child{padding-left:20px}.col3:first-child{padding-right:20px}.col3:last-child{padding-left:20px}.col2 h6{text-align:center;margin-bottom:30px}section.dark p,section.dark ul{color:#fff}.box{margin-top:20px;background-color:#fff;padding:30px;border:1px solid #eee;box-shadow:0 6px 15px rgba(50,50,93,.1),0 2px 6px rgba(0,0,0,.07);line-height:23px}.box.box-sm,.box.box-xs{margin-left:auto;margin-right:auto}.box.box-sm{max-width:600px}.box.box-xs{max-width:400px}.box-padded{padding:50px}.box.box-noborder{border-width:0}.box.transparent{margin-top:0;background-color:transparent;box-shadow:none;border:none}@media (max-width:500px){.col2,.col2-700,.col2-900{width:100%;padding:0!important}}@media (max-width:700px){.col2-700{width:100%;padding:0!important}}@media (max-width:1120px){.container{width:100%}.container,.container-menu{padding-left:10px;padding-right:10px}.box{margin-left:-10px;margin-right:-10px;padding:20px 10px}.box.box-padded{padding:40px}}@media (max-width:880px){.col2-900{width:100%;padding:0!important}}@media (max-width:700px){.box.box-padded{padding:20px}.col3{width:100%;padding:0!important}#title{left:5px}}.btn{background-color:transparent;display:inline-block;color:#222;padding:6px 12px;font-size:14px;font-weight:400;line-height:1.43;text-align:center;white-space:nowrap;vertical-align:middle;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;border:1px solid #aaa;border-radius:4px;transition:all .15s ease;box-shadow:0 4px 6px rgba(50,93,63,.11),0 1px 3px rgba(0,0,0,.08);-webkit-appearance:none;-moz-appearance:none;appearance:none}.btn:hover{opacity:.9;transform:translateY(-1px);box-shadow:0 7px 14px rgba(50,93,63,.1),0 3px 6px rgba(0,0,0,.08)}.btn-sm{padding:4px 8px;border-radius:3px;font-size:13px}.btn-lg{font-size:17px;padding:8px 16px;border:2px solid #333;border-radius:5px}.btn-xl{font-size:20px;padding:10px 20px;border:3px solid #333;border-radius:6px}.btn-lg,.btn-xl{-webkit-font-smoothing:antialiased;font-weight:700}.btn-white{color:#fff;border-color:#fff}.btn-dark{border-color:#444}.btn-green{color:#fff;border-color:#12849a;background-color:#12849a}.btn-purple{color:#fff;border-color:#3235ba;background-color:#3235ba}.btn:disabled{opacity:.5;cursor:default}.btn:disabled:hover{opacity:.5;transform:none}.btn-red{color:#fff;background-color:#d9534f;border-color:#d43f3a}.btn-red:hover{color:#fff;background-color:#c9302c;border-color:#ac2925}footer{background-color:#202a32;padding:50px 0 30px 0;-webkit-font-smoothing:antialiased;position:relative;z-index:5}footer,footer a,footer p{color:#fff}footer h6{color:#eee;text-transform:uppercase;font-size:.9em;font-weight:600;letter-spacing:.5px}footer .col2 h6,footer .col2 ul{margin:10px 0 20px 30px;text-align:left}footer .col2 li a{font-size:15px;display:inline-block;line-height:1.7em;width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}footer p.bottom{margin-top:40px;color:#949da2;font-size:14px;text-align:center}.label{display:inline;padding:.2em .6em .3em;font-size:75%;font-weight:700;line-height:1;color:#fff;text-align:center;white-space:nowrap;vertical-align:baseline;border-radius:.25em}.label-success{background-color:#5cb85c}.label-warning{background-color:#f0ad4e}.label-danger{background-color:#d9534f}.label-default{background-color:#777}.label-primary{background-color:#337ab7}ul.bullet li{margin-left:20px;list-style-type:circle}table{border-collapse:collapse;margin:20px 0}.bordered tr{border-bottom:1px solid #ddd}.bordered tr:last-child{border-bottom-width:0}.bordered thead{color:#777;font-size:.75em;text-transform:uppercase}.bordered thead tr:last-child{border-bottom:2px solid #ccc}.bordered td{padding:.5em 10px}.invalidinput{background-color:#fee}.invalidlabel,.invalidlabelbg{color:#c44}.invalidlabelbg{background-color:#fee}</style><meta itemprop="name" content="Text Moderation API Demo"><meta itemprop="description" content="See how our Text moderation API works by testing it directly from your browser"><meta itemprop="image" content="https://sightengine.com/assets/img/covers/isometric-tile@2x.jpg"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@sightengine"><meta name="twitter:title" content="Text Moderation API Demo"><meta name="twitter:description" content="See how our Text moderation API works by testing it directly from your browser"><meta name="twitter:creator" content="@sightengine"><meta name="twitter:image:src" content="https://sightengine.com/assets/img/covers/isometric-tile@2x.jpg"><meta name="twitter:domain" content="sightengine.com"><meta property="og:title" content="Text Moderation API Demo" /><meta property="og:url" content="http://www-cf.sightengine.com/demo-text" /><meta property="og:description" content="See how our Text moderation API works by testing it directly from your browser" /><meta property="og:site_name" content="Sightengine" /><meta name="og:image" content="https://sightengine.com/assets/img/covers/isometric-tile@2x.jpg"><meta property="og:locale" content="en_US" /><meta property="og:type" content="website" /><script>!function(e){var n=e.onerror;e.onerror=function(e,o,i,r,t){if("function"==typeof ga){var a=e;void 0!==t&&void 0!==t.message&&(a=t.message),a+=" @ "+o+":"+i+":"+r,ga("send","exception",{exDescription:a,exFatal:!1})}return"function"==typeof n&&n(e,o,i,r,t)}}(window);
+</script><script>
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
+if(getCookie('SE_LG')==2) window.location.replace("https://dashboard.sightengine.com/demo-text");
+</script><style>body{
+-webkit-text-size-adjust: 100%;
+}
+#ov-container{
+  height:100%;
+  overflow-y:scroll;-webkit-overflow-scrolling:touch;
+  overflow-x:visible;
+}
+@media (max-width: 700px) {
+#banner {padding:5px 0;}
+}
+@media (min-width:701px) {
+#banner {z-index: 50; position:relative;}
+}</style></head>
+
+
+ -->
+
+
+
+
+
+
+<!-- 
+
+<body> -->
+
+    <div id="ov-container">
+       <!--  <div id="mobile-nav-container">
+<div id="mobile-nav">
+  <section>
+    <h2>Products</h2>
+    <ul class="onecolumn"><li><a href="https://sightengine.com/image-moderation">Image Moderation</a></li><li><a href="https://sightengine.com/video-moderation">Video Moderation</a></li><li><a href="https://sightengine.com/text-moderation-api">Text Moderation</a></li><li><a href="https://sightengine.com/anonymize-images-remove-blur-faces-personal-information">Image Anonymization</a></li><li><a href="https://sightengine.com/video-anonymization">Video Anonymization</a></li></ul>
+  </section>
+  <div class="separator"></div>
+  <section>
+    <ul>
+      <li><a href="https://sightengine.com/demo">Demo</a></li>
+      <li><a href="https://sightengine.com/docs/">Docs</a></li>
+      <li><a href="https://sightengine.com/pricing">Pricing</a></li>
+      <li><a href="https://sightengine.com/contact">Contact</a></li>
+    </ul>
+  </section>
+  <div class="separator"></div>
+  <section class="center">
+    <a href="https://dashboard.sightengine.com/signup" class="btn btn-purple">SIGN UP</a>
+    <a href="https://dashboard.sightengine.com/login" class="btn">LOG IN</a>
+  </section>
+  <button id="mobile-closemenu">
+    <svg width="40" height="40" viewBox="0 0 40 40"><title>Close mobile menu</title><path d="M25.6 14.3a1 1 0 0 1 0 1.4l-4.24 4.25 4.25 4.24a1 1 0 1 1-1.42 1.42l-4.24-4.25-4.24 4.25a1 1 0 0 1-1.42-1.42l4.25-4.24-4.25-4.24a1 1 0 0 1 1.42-1.42l4.24 4.25 4.24-4.25a1 1 0 0 1 1.42 0z" fill="#8898AA" fill-rule="evenodd"></path></svg>
+  </button>
+</div>
+</div>
+ -->
+<!-- <nav id="banner"  class="transparent" itemscope itemtype="https://schema.org/SiteNavigationElement"> -->
+    <!-- <div class="container-menu"> -->
+
+      <!--   <a href="#kj" id="menu-link" class="show-menu-icon"><img src="https://sightengine.com/assets/img/menu/darkcyan.png" width="20" height="17" alt="Menu"></a>
+ --><!-- 
+        <a href="https://sightengine.com" id="title"><img alt="Sightengine" src="https://sightengine.com/assets/img/logo-cyan.png" srcset="https://sightengine.com/assets/img/logo-cyan.png 260w,https://sightengine.com/assets/img/logo-cyan2.png 520w" sizes="130px" width="130" height="30" /></a> -->
+<!-- 
+        <ul id="menu">
+            <li class="headlk">
+                <a href="{{ url_for('main.index') }}" class="headlk">
+                    Home
+             
+                </a></li>
+            <li class="headlk">
+               <a href="{{ url_for('main.checkTweet') }}" class="headlk">
+                    Tweet Check
+              
+                </a>
+            </li> -->
+    <!-- <div class="dropdown-content"> -->
+<!--         <ul class="headlk">
+            <li>
+                <a href="https://sightengine.com/image-moderation">
+              <div class="dd-prod-title">Image Moderation</div>
+              <div class="dd-prod-desc">Detect and filter unwanted images</div>
+              </a>
+            </li>
+            <li>
+                <a href="https://sightengine.com/video-moderation">
+              <div class="dd-prod-title">Video Moderation</div>
+              <div class="dd-prod-desc">Moderate and filter videos and live streams</div>
+              </a>
+            </li>
+            <li>
+              <a href="https://sightengine.com/text-moderation-api">
+              <div class="dd-prod-title">Text Moderation</div>
+              <div class="dd-prod-desc">Detect and filter unwanted text-based content</div>
+              </a>
+            </li>
+            <li>
+                <a href="https://sightengine.com/anonymize-images-remove-blur-faces-personal-information">
+              <div class="dd-prod-title">Image Anonymization</div>
+              <div class="dd-prod-desc">Remove personal information in images</div>
+              </a>
+            </li>
+            <li>
+                <a href="https://sightengine.com/video-anonymization">
+              <div class="dd-prod-title">Video Anonymization</div>
+              <div class="dd-prod-desc">Remove personal information in videos</div>
+              </a>
+            </li>
+        </ul> -->
+    <!-- </div> -->
+
+
+    <!--     <li>
+            <a href="" class="headlk">Login</a>
+        </li>
+         <li>               
+            {% if current_user.is_authenticated %}
+            <a href="{{ url_for('main.profile') }}" class="headlk">
+                Profile
+            </a>
+            {% endif %}
+        </li>
+        <li>
+            {% if not current_user.is_authenticated %}
+            <a href="{{ url_for('auth.login') }}" class="headlk">
+                Login
+            </a>
+            <a href="{{ url_for('auth.signup') }}" class="headlk" >
+                Sign Up
+            </a>
+            {% endif %}
+        </li>
+        <li>
+            {% if current_user.is_authenticated %}
+            <a href="{{ url_for('auth.logout') }}" class="headlk">
+                Logout
+            </a>
+            {% endif %}
+        </li> -->
+       <!--  <li><a href="" class="headlk">Pricing</a></li>
+        <li><a href="" class="headlk">Documentation</a></li>
+        <li><a href="" >Login</a></li> -->
+        <!-- <li><a href="https://dashboard.sightengine.com/signup" class="btn btn-purple">GET STARTED</a></li> -->
+    <!-- </ul> -->
+    <!-- </div> -->
+<!-- </nav> -->
+<style>*{box-sizing:border-box}#app{position:absolute;width:100%;padding:100px 10px}#app .card{height:200px;width:100%;padding:30px;max-width:700px;margin:auto}h1{font-size:22px}p.explainer{font-size:16px;color:#666;margin-bottom:20px}span.counter{display:block;float:right;position:relative;top:-20px;margin-right:10px;font-size:15px;color:#666;z-index:20}span.counter .overflow{color:red;font-weight:600}#languagefield{background-color:#fff;padding-left:10px;font-size:.8em;border-bottom:1px solid #eee}span.lang.active{color:#3235ba;opacity:1;border-bottom:2px solid #3235ba}span.lang{text-transform:uppercase;font-weight:400;opacity:.4;cursor:pointer;display:inline-block;padding:10px}#editablefield,#resultpane{padding:20px;background-color:#fff}#editablefield{position:relative;z-index:20;-webkit-user-modify:read-write-plaintext-only;-moz-user-modify:read-write-plaintext-only;-ms-user-modify:read-write-plaintext-only;outline:0}#demoform-structure{position:relative;z-index:10;box-shadow:0 0 20px 0 rgba(0,0,0,.3)}#editablefield,#editablefield p{font-size:24px;line-height:1.4em}#editablefield.reduce,#editablefield.reduce p{font-size:22px}#editablefield.reducemore,#editablefield.reducemore p{font-size:18px}#editablefield.nonewedits .danger{color:#db7539;border-bottom:2px solid #db7539}.spinner{enable-background:new;height:50px;display:none;position:absolute;left:50%;margin-left:-25px;margin-top:20px}.pressenter{position:absolute;z-index:100;margin-top:20px;margin-left:-20px;display:none;width:100%;height:20px;text-align:center}.typing .pressenter{display:block}#resultpane{position:relative;min-height:100px}#resultpane h2{font-size:12px;margin:20px 0 6px;text-transform:uppercase;font-weight:700;opacity:.8}#resultpane h2:first-child{margin-top:0}#errorbox,#resultbox{display:none}.loading #resultbox,.typing #errorbox,.typing #resultbox{opacity:.35;filter:blur(4px);-webkit-filter:blur(4px);-moz-filter:blur(4px);-o-filter:blur(4px)}.loading .spinner{display:block}kbd{display:inline-block;padding:3px 5px;font-size:13px;line-height:12px;color:#444d56;background-color:#fafbfc;border:solid 1px #c6cbd1;border-bottom-color:#959da5;border-radius:3px;box-shadow:inset 0 -1px 0 #959da5}@media (max-width:700px){#app .card{padding-left:10px;padding-right:10px}#editablefield,#editablefield p{font-size:22px}#editablefield.reduce,#editablefield.reduce p{font-size:20px}#editablefield.reducemore,#editablefield.reducemore p{font-size:17px}}kbd{cursor:pointer}.tag{background:#eee;border-radius:16px;color:#222;display:inline-block;font-size:15px;height:32px;line-height:32px;padding:0 13px;margin:5px 10px 5px 0;display:inline-block;transition:background-color 150ms linear}.tag.good{background-color:#12849a;color:#fff;-webkit-font-smoothing:antialiased}.tag.bad{background-color:#db7539;color:#fff;font-weight:400;-webkit-font-smoothing:antialiased}.tag .score{font-size:12px;margin-left:4px}
+</style>
+
+
+
+
+<section id="app">
+<noscript><div class="notification notification-error"><span>You need to activate Javascript to use this demo</span></div></noscript>
+<div class="card">
+<h1>Tweet Filter Demonstration</h1>
+<p class="explainer" style="color:green;">Type tweet or try you own tweet or,  <a href="" id="tryanotherexample" style="color:red;">try a random example</a></p>
+
+<form id="demoform" method="POST" action="/checkTweet">
+
+    <div id="demoform-structure">
+        <div id="languagefield">
+        <span class="lang active" data-lang="en" style="font-size:18px;">English </span> <span style="font-size:14px;">For now we support only English Language.</span>
+        <!-- 
+        <span class="lang" data-lang="es">Spanish</span> <span class="lang" data-lang="fr">French</span> <span class="lang" data-lang="de">German</span> <span class="lang" data-lang="zh">Chinese</span> -->
+        </div>
+
+        <div id="editablefield" contenteditable="true" name="tweet"  spellcheck="true">Hi, This is interface for tweet filtering.
+           <!--  <input id="editablefield"  style="width: 2000px;" class="input is-large" type="text" name="name" placeholder="This is interface for tweet filtering." autofocus=""> -->
+        </div>
+    </div>
+
+    <div id="resultpane">
+    <div class="pressenter">Press <kbd>Enter</kbd> to filter the Tweet.</div>
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="40px" height="40px" viewBox="0 0 50 50" xml:space="preserve" class="spinner"><path fill="#4d4845" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(142.5 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.8s" repeatCount="indefinite"></animateTransform></path></svg>
+
+    <div id="errorbox"><p></p></div>
+    <div id="resultbox">
+    <h2>Profanity</h2>
+    <div id="profanityresult"></div>
+    <h2>Personal details</h2>
+    <div id="personalresult"></div>
+    <h2>Links / URLs</h2>
+    <div id="linkresult"></div>
+    <span class="details"></span>
+    </div>
+    </div>
+
+
+</form>
+</div>
+</section>
+</div>
+
+
+
+
+
+
+
+
+
+<script src="https://sightengine.com/assets/js/jquery.1.12.4.min.js"></script>
+
+
+
+<script>let endpoint ="https://api.sightengine.com";var credentials = {};
+
+let examples = [
+"",
+"Our Text Moderation was built to be both fast and smart. It will catch phonetic variations such as 'phuk that' or 'big azz'",
+"Letter replacements: a$$, f*ck",
+"Bad Emojis (such as 🖕)",
+"Relevant letter omissions: 'wanna have sx', 'you are a dck'",
+"Blanks and special characters: _a_sᅳ_s_ and B * O ** O  B S",
+"Grawlix: pile of $#!t",
+"Complex leet typing: coc|<s, F|_|CK",
+"S͛p͛e͛c͛i͛a͛l͛ cͨaͣrͬaͣcͨtͭeͤrͬs ⒜⒩⒟ c̴r̴a̴p̴p̴y̴ unicode: 𝓬𝓻𝓪𝓹 t̼i̼t̼s̼ p̷o̷r̷n̷ as 🅡🅔🅣🅐🅡🅓",
+"Embedded words 12fuckblablah, youidiot, while smartly ignoring potential false positives such as phuket, bassguitar and amass",
+"Personal details: +1 (575) 224-2484, jane@gmail.com",
+"Links mydomain.com and IP addresses:84.114.104.57",
+"Obfuscated emails: janeATgmailDOTcom, jane_hotmail_com",
+];
+
+var personalDict,profanityDict,linkDict,efn="editablefield";
+
+function resetDicts()
+{profanityDict={insult:{has:!1,no:"no insult",yes:"insult"},discriminatory:{has:!1,no:"no discriminatory content",yes:"discriminatory"},sexual:{has:!1,no:"no sexual content",yes:"sexual"},inappropriate:{has:!1,no:"no inappropriate content",yes:"inappropriate"},grawlix:{has:!1,no:"no grawlix",yes:"grawlix"},other:{has:!1,no:"no other profanity",yes:"other profanity"}},personalDict={email:{has:!1,no:"no email",yes:"email"},phone:{has:!1,no:"no phone number",yes:"phone number"},ip:{has:!1,no:"no IP address",yes:"IP address"}},linkDict={url:{has:!1,no:"no URL",yes:"URL"}}}resetDicts();var example_index=0,language="en",maxlength=1024;function showResults(){var e="";Object.keys(profanityDict).forEach(function(t){has=profanityDict[t].has,has?e+='<span class="tag bad">'+profanityDict[t].yes+"</span>":"other_profanity"!=t&&(e+='<span class="tag">'+profanityDict[t].no+"</span>")}),$("#profanityresult").html(e),e="",Object.keys(personalDict).forEach(function(t){has=personalDict[t].has,has?e+='<span class="tag bad">'+personalDict[t].yes+"</span>":e+='<span class="tag">'+personalDict[t].no+"</span>"}),$("#personalresult").html(e),e="",Object.keys(linkDict).forEach(function(t){has=linkDict[t].has,has?e+='<span class="tag bad">'+linkDict[t].yes+"</span>":e+='<span class="tag">'+linkDict[t].no+"</span>"}),$("#linkresult").html(e)}function showError(e){$("#errorbox p").text(e),$("#errorbox").show(),$("#resultbox").hide()}function setEndOfContenteditable(e){var t,n,a=document.getElementById(e);document.createRange?((t=document.createRange()).selectNodeContents(a),t.collapse(!1),(n=window.getSelection()).removeAllRanges(),n.addRange(t)):document.selection&&((t=document.body.createTextRange()).moveToElementText(a),t.collapse(!1),t.select())}function setLanguage(e){language!=e&&(language=e,$("span.lang").removeClass("active"),$("span.lang[data-lang="+e+"]").addClass("active"))}function escapeHTML(e){let t=document.createElement("div");return t.innerText=e,t.innerHTML}function submitText(){var e=document.getElementById(efn).innerText;if(""==e)return;$("#errorbox").hide(),$("#resultbox").show(),$("#resultpane").removeClass("typing"),$("#resultpane").addClass("loading");var t=escapeHTML(e).replace(/\n/g,"<br/>");$("#"+efn).html(t);let n={text:e,lang:language,mode:"standard"};n=Object.assign({},n,credentials),$.post(endpoint+"/1.0/text/check.json",n).done(function(n){if($("#resultpane").removeClass("loading"),"success"==n.status){resetDicts(),$("#editablefield").addClass("nonewedits");var a=n.profanity.matches.concat(n.personal.matches).concat(n.link.matches);a.sort(function(e,t){return e.start-t.start});var s=0,r="",o=Array.from(e);for(i=0;i<a.length;i++){for("insult"==a[i].type&&(profanityDict.insult.has=!0),"discriminatory"==a[i].type&&(profanityDict.discriminatory.has=!0),"sexual"==a[i].type&&(profanityDict.sexual.has=!0),"inappropriate"==a[i].type&&(profanityDict.inappropriate.has=!0),"url"==a[i].type&&(linkDict.url.has=!0),"phone_number_us"!=a[i].type&&"phone_number_fr"!=a[i].type&&"phone_number_uk"!=a[i].type||(personalDict.phone.has=!0),"email"==a[i].type&&(personalDict.email.has=!0),"ipv4"!=a[i].type&&"ipv6"!=a[i].type||(personalDict.ip.has=!0),"grawlix"==a[i].type&&(profanityDict.grawlix.has=!0),"other_profanity"==a[i].type&&(profanityDict.other.has=!0);a[i].start>s;)r+=escapeHTML(o[s]),s+=1;for(r+='<span class="danger">';a[i].end+1>s;)r+=escapeHTML(o[s]),s+=1;r+="</span>"}for(;s<o.length;)r+=escapeHTML(o[s]),s+=1;var l=r.replace(/\n/g,"<br/>");l!=t&&($("#editablefield").html(l),setEndOfContenteditable("editablefield")),showResults()}else showError(n.error.message)}).fail(function(e){$("#resultpane").removeClass("loading");var t=e.responseJSON;void 0===t?showError("Connection error, please make sure you are connected"):"status"in t&&"success"!=t.status?showError(t.error.message):showError("Please try again")})}function getCharcount(){return $("#editablefield").text().length}function displayCharcount(e){var t=getCharcount(),n=$("#editablefield");n.removeClass("reduce"),n.removeClass("reducemore"),t>=400?n.addClass("reducemore"):t>150&&n.addClass("reduce"),t<=.8*maxlength?$(".counter").html(""):t>maxlength?$(".counter").html('<span class="overflow">'+t+"</span> / "+maxlength):$(".counter").html(t+" / "+maxlength)}$(document).ready(function(){$.post(endpoint),$("#demoform").bind("input propertychange",function(){$("#editablefield").removeClass("nonewedits"),$("#demoform input").show()}),$("#demoform").submit(function(){return submitText(),!1}),$("#tryanotherexample").click(function(){return"en"!=language&&setLanguage("en"),example_index+=1,example_index%=examples.length,$("#editablefield").text(examples[example_index]),submitText(),!1}),$("#editablefield").keyup(function(e){13!=e.which&&16!=e.which&&17!=e.which&&18!=e.which&&19!=e.which&&20!=e.which&&37!=e.which&&38!=e.which&&39!=e.which&&40!=e.which&&displayCharcount(e)}),$("#editablefield").keydown(function(e){13!=e.which&&16!=e.which&&17!=e.which&&18!=e.which&&19!=e.which&&20!=e.which&&37!=e.which&&38!=e.which&&39!=e.which&&40!=e.which&&($("#resultpane").addClass("typing"),displayCharcount(e))}),$("#editablefield").keypress(function(e){if(13==e.which&&!e.shiftKey)return e.preventDefault(),submitText(),!1;displayCharcount(e)}),setEndOfContenteditable("editablefield"),$("kbd").click(function(){submitText()}),$("span.lang").click(function(){setLanguage($(this).attr("data-lang")),submitText()})});
+</script>
+
+
+<script>
+
+    !function(){function n(n,e){return n.classList?n.classList.contains(e):new RegExp("(^| )"+e+"( |$)","gi").test(n.className)}
+     function e(n,e){n.classList?n.classList.remove(e):n.className=n.className.replace(new RegExp("(^|\\b)"+e.split(" ").join("|")+"(\\b|$)","gi")," ")}
+     function t(n,e){n.classList?n.classList.add(e):n.className+=" "+e}
+     function a(){!function(){var a=document.getElementById("menu-link");if(null!=a){var o=document.getElementById("mobile-nav-container");if(null!=o){a.addEventListener("click",function(e){return e.stopPropagation(),n(o,"active")||(t(o,"active"),t(document.body,"show-mobile-nav")),!1},!1);var i=document.getElementById("mobile-closemenu");null!=i&&i.addEventListener("click",function(n){n.stopPropagation(),e(o,"active"),e(document.body,"show-mobile-nav")},!1)}}}(),o=document.getElementById("banner"),n(document.body,"fixed-banner")&&(i=!0,null!=o&&n(o,"transparent")&&(s=!0))}var o,i=!1,s=!1;"loading"!=document.readyState?a():document.addEventListener("DOMContentLoaded",a),window.onscroll=function(n){i&&s&&(window.scrollY>=40?e(o,"transparent"):t(o,"transparent"))}}();
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-42589425-1', 'sightengine.com');ga('set', 'dimension1', 'visitor');ga('send', 'pageview');</script>
+
+
+<div style="display:none">
+    <script>/* <![CDATA[ */var google_conversion_id = 1030916123;var google_custom_params = window.google_tag_params;var google_remarketing_only = true;/* ]]> */
+    </script>
+        <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"></script>
+        <noscript>
+            <div style="display:inline;"><img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/1030916123/?guid=ON&amp;script=0"/></div>
+        </noscript>
+    </div>
+
+
+
+<!-- </body>
+</html>
+ -->
+{% endraw %}
+{% endblock %}

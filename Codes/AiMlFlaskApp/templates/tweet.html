@@ -1,0 +1,364 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% raw %}
+
+
+
+<!-- <section > -->
+ 
+<style>*{box-sizing:border-box}
+#app{position:absolute;width:100%;padding:100px 10px}
+
+#app .card{height:200px;width:100%;padding:30px;max-width:700px;margin:auto}
+h1{font-size:22px}
+p.explainer{font-size:16px;color:#666;margin-bottom:20px}
+span.counter{display:block;float:right;position:relative;top:-20px;margin-right:10px;font-size:15px;color:#666;z-index:20}
+span.counter .overflow{color:red;font-weight:600}#languagefield{background-color:#fff;padding-left:10px;font-size:.8em;border-bottom:1px solid #eee}
+span.lang.active{color:#3235ba;opacity:1;border-bottom:2px solid #3235ba}
+span.lang{text-transform:uppercase;font-weight:400;opacity:.4;cursor:pointer;display:inline-block;padding:10px}#editablefield,#resultpane{padding:20px;background-color:#fff}#editablefield{position:relative;z-index:20;-webkit-user-modify:read-write-plaintext-only;-moz-user-modify:read-write-plaintext-only;-ms-user-modify:read-write-plaintext-only;outline:0}#demoform-structure{position:relative;z-index:10;box-shadow:0 0 20px 0 rgba(0,0,0,.3)}#editablefield,#editablefield 
+
+p{font-size:24px;line-height:1.4em}#editablefield.reduce,#editablefield.reduce p{font-size:22px}#editablefield.reducemore,#editablefield.reducemore p{font-size:18px}#editablefield.nonewedits .danger{color:#db7539;border-bottom:2px solid #db7539}.spinner{enable-background:new;height:50px;display:none;position:absolute;left:50%;margin-left:-25px;margin-top:20px}.pressenter{position:absolute;z-index:100;margin-top:20px;margin-left:-20px;display:none;width:100%;height:20px;text-align:center}.typing .pressenter{display:block}#resultpane{position:relative;min-height:100px}#resultpane 
+h2{font-size:12px;margin:20px 0 6px;text-transform:uppercase;font-weight:700;opacity:.8}#resultpane 
+h2:first-child{margin-top:0}#errorbox,#resultbox{display:solid}.loading #resultbox,.typing #errorbox,.typing #resultbox{opacity:.35;filter:blur(4px);-webkit-filter:blur(4px);-moz-filter:blur(4px);-o-filter:blur(4px)}.loading .spinner{display:block}
+kbd{display:inline-block;padding:3px 5px;font-size:13px;line-height:12px;color:#444d56;background-color:#fafbfc;border:solid 1px #c6cbd1;border-bottom-color:#959da5;border-radius:3px;box-shadow:inset 0 -1px 0 #959da5}@media (max-width:700px){#app .card{padding-left:10px;padding-right:10px}#editablefield,#editablefield p{font-size:22px}#editablefield.reduce,#editablefield.reduce 
+
+  p{font-size:20px}#editablefield.reducemore,#editablefield.reducemore 
+
+  p{font-size:17px}}
+
+
+  kbd{cursor:pointer}.tag{background:#eee;border-radius:16px;color:#222;display:inline-block;font-size:15px;height:32px;line-height:32px;padding:0 13px;margin:5px 10px 5px 0;display:inline-block;transition:background-color 150ms linear}.tag.good{background-color:#12849a;color:#fff;-webkit-font-smoothing:antialiased}.tag.bad{background-color:#db7539;color:#fff;font-weight:400;-webkit-font-smoothing:antialiased}.tag .score{font-size:12px;margin-left:4px}
+</style>
+
+
+
+<noscript><div class="notification notification-error"><span>You need to activate Javascript to use this demo</span></div></noscript>
+{% endraw %}
+<!-- <div class="card"> -->
+  <div style="width:800px;margin-left:18.0%">
+<H1 style="font-size:50px;"><B>TWEET FILTER DEMONSTRATION</B></H1>
+<br />
+<span class="explainer" style="color:brown;font-size:20px;">Type tweet or try you own tweet or,  <a href="" id="tryanotherexample" style="color:red;">Try a random example</a></span>
+<br />
+<br /><br />
+
+</div>
+<div class="card" style="width:800px;margin-left:18.0%">
+
+
+<form id="demoform" method="POST" action="/checkTweet" >
+
+    <div id="demoform-structure" size="100px">
+        <div id="languagefield">
+        <span class="lang active" data-lang="en" style="font-size:18px;">English </span> <span style="font-size:14px;">For now we support only English Language.</span>
+      </div>
+       {% if tweet %}
+      <div id="editablefield" contenteditable="true" name="tweet"  spellcheck="true" autofocus="">{{ tweet }}</div>
+      {% else %}
+      <div id="editablefield" contenteditable="true" name="tweet"  spellcheck="true" autofocus="">Hi, This is interface for tweet filtering.</div>
+      {% endif %}
+    </div>
+          
+
+
+ {% if tweet %}
+<script>
+   $("#resultbox").show();
+    $("#resultpane").removeClass("typing");
+  </script>
+    <div id="resultpane">
+    <div class="pressenter">Press <kbd>Submit</kbd> to filter the Tweet.</div>
+ <!--    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="40px" height="40px" viewBox="0 0 50 50" xml:space="preserve" class="spinner"><path fill="#4d4845" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(142.5 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.8s" repeatCount="indefinite"></animateTransform></path></svg> -->
+
+    <div id="errorbox"><p></p></div>
+    <div id="resultbox">
+    <h2>Inappropriate Content Filtering</h2>
+    <div id="profanityresult">
+
+ {% if tweet %}
+
+  {% if params["Toxic"][0] >= 0.7 %}
+      <span class="tag bad" id = "toxic" style="font-size:20px" >Toxic</span>
+   {% else %}
+      <span class="tag" id = "toxic"  style="font-size:15px">Toxic</span>
+   {% endif %}
+
+
+ {% if params["SevereToxic"][0] >= 0.7 %}
+      <span class="tag bad" id = "toxic" style="font-size:20px">Severe Toxic</span>
+   {% else %}
+      <span class="tag" id = "toxic"  style="font-size:15px">Severe Toxic</span>
+   {% endif %}
+
+
+ {% if params["Obscene"][0] >= 0.7 %}
+      <span class="tag bad" id = "toxic" style="font-size:20px"> Obscene</span>
+   {% else %}
+      <span class="tag" id = "toxic" style="font-size:15px"> Obscene</span>
+   {% endif %}
+
+
+ {% if params["Threat"][0] >= 0.7 %}
+      <span class="tag bad" id = "toxic" style="font-size:20px">Threat</span>
+   {% else %}
+      <span class="tag" id = "toxic"  style="font-size:15px">Threat</span>
+   {% endif %}
+
+  {% if params["Insult"][0] >= 0.7 %}
+      <span class="tag bad" id = "toxic" style="font-size:20px">Insult</span>
+   {% else %}
+      <span class="tag" id = "toxic"  style="font-size:15px">Insult</span>
+   {% endif %}
+
+
+ {% if params["IdentityHate"][0] >= 0.7 %}
+      <span class="tag bad" id = "toxic" style="font-size:20px">Identity Hate</span>
+   {% else %}
+      <span class="tag" id = "toxic" style="font-size:15px">Identity Hate</span>
+   {% endif %}
+{% endif %}
+
+    </div>
+<br />
+<br />
+   {% if tweet %}
+   <h2>Inappropriate Class's Prediction Percentage</h2>
+    <div id="classpercentage">
+   
+      <div>
+            {% if params["Toxic"][0] >= 0.7 %}
+          <span class="tag bad" style="font-size:20px">{{ params["Toxic"][1] }}</span>
+            {% else %}
+          <span class="tag" style="font-size:15px">{{ params["Toxic"][1] }}</span>
+            {% endif %}
+
+            {% if params["SevereToxic"][0] >= 0.7 %}
+          <span class="tag bad" style="font-size:20px">{{ params["SevereToxic"][1]}}</span>
+            {% else %}
+          <span class="tag" style="font-size:15px">{{ params["SevereToxic"][1]}}</span>
+            {% endif %}
+
+            {% if params["Obscene"][0] >= 0.7 %}
+          <span class="tag bad " style="font-size:20px">{{ params["Obscene"][1]}}</span>
+            {% else %}
+          <span class="tag" style="font-size:15px">{{ params["Obscene"][1]}}</span>
+            {% endif %}
+
+     <!--  </div>
+      <div> -->
+            {% if params["Threat"][0] >= 0.7 %}
+          <span class="tag bad" style="font-size:20px">{{params["Threat"][1]}}</span>
+            {% else %}
+          <span class="tag" style="font-size:15px">{{params["Threat"][1]}}</span>
+            {% endif %}
+
+            {% if params["Insult"][0] >= 0.7 %}
+          <span class="tag bad" style="font-size:20px">{{params["Insult"][1]}}</span>
+            {% else %}
+          <span class="tag" style="font-size:15px">{{params["Insult"][1] }}</span>
+            {% endif %}
+
+            {% if params["IdentityHate"][0] >= 0.7 %}
+          <span class="tag bad" style="font-size:20px">{{params["IdentityHate"][1]}}</span>
+            {% else %}
+          <span class="tag" style="font-size:15px">{{params["IdentityHate"][1]}}</span>
+            {% endif %}
+      </div>
+    </div>
+   {% endif %}
+<!--        <h2>Personal details</h2>
+    <div id="personalresult">
+    <h2>Links / URLs</h2>
+    <div id="linkresult"></div>
+ -->
+
+<span class="details"></span>
+</div>
+</div>
+
+
+{% endif %}
+
+{% raw %}
+  <button id="submitbutton" class="button is-block is-info is-large is-fullwidth">Submit</button>
+</form>
+
+
+<form id='exampleForm' method = 'post' action='#' style='display:none'>
+    <input id='exInput' type='text' name='tweet'>
+</form>
+
+</div>
+<!-- </section> -->
+
+
+
+
+
+
+
+
+
+
+<script src="https://sightengine.com/assets/js/jquery.1.12.4.min.js"></script>
+
+
+
+<script>let endpoint ="https://api.sightengine.com";var credentials = {};
+
+let examples = [
+"",
+"Our Text Moderation was built to be both fast and smart. It will catch phonetic variations such as 'phuk that' or 'big azz'",
+"Letter replacements: a$$, f*ck",
+"Bad Emojis (such as 🖕)",
+"Relevant letter omissions: 'wanna have sx', 'you are a dck'",
+"Blanks and special characters: _a_sᅳ_s_ and B * O ** O  B S",
+"Grawlix: pile of $#!t",
+"Complex leet typing: coc|<s, F|_|CK",
+"S͛p͛e͛c͛i͛a͛l͛ cͨaͣrͬaͣcͨtͭeͤrͬs ⒜⒩⒟ c̴r̴a̴p̴p̴y̴ unicode: 𝓬𝓻𝓪𝓹 t̼i̼t̼s̼ p̷o̷r̷n̷ as 🅡🅔🅣🅐🅡🅓",
+"Embedded words 12fuckblablah, youidiot, while smartly ignoring potential false positives such as phuket, bassguitar and amass",
+"Personal details: +1 (575) 224-2484, jane@gmail.com",
+"Links mydomain.com and IP addresses:84.114.104.57",
+"Obfuscated emails: janeATgmailDOTcom, jane_hotmail_com",
+];
+
+var personalDict,profanityDict,linkDict,efn="editablefield";
+
+function resetDicts()
+{profanityDict={
+  insult:{has:!1,no:"no insult",yes:"insult"},
+  discriminatory:{has:!1,no:"no discriminatory content",yes:"discriminatory"},
+  sexual:{has:!1,no:"no sexual content",yes:"sexual"},
+  inappropriate:{has:!1,no:"no inappropriate content",yes:"inappropriate"},
+  grawlix:{has:!1,no:"no grawlix",yes:"grawlix"},other:{has:!1,no:"no other profanity",yes:"other profanity"}},
+
+  personalDict={email:{has:!1,no:"no email",yes:"email"},phone:{has:!1,no:"no phone number",yes:"phone number"},ip:{has:!1,no:"no IP address",yes:"IP address"}},
+  linkDict={url:{has:!1,no:"no URL",yes:"URL"}}}
+  resetDicts();var example_index=0,language="en",maxlength=1024;
+
+function showResults(){
+
+  // var e="";Object.keys(profanityDict).forEach(function(t){has=profanityDict[t].has,has?e+='<span class="tag bad">'+profanityDict[t].yes+"</span>":"other_profanity"!=t&&(e+='<span class="tag">'+profanityDict[t].no+"</span>")}),$("#profanityresult").html(e),e="",Object.keys(personalDict).forEach(function(t){has=personalDict[t].has,has?e+='<span class="tag bad">'+personalDict[t].yes+"</span>":e+='<span class="tag">'+personalDict[t].no+"</span>"}),$("#personalresult").html(e),e="",Object.keys(linkDict).forEach(function(t){has=linkDict[t].has,has?e+='<span class="tag bad">'+linkDict[t].yes+"</span>":e+='<span class="tag">'+linkDict[t].no+"</span>"}),$("#linkresult").html(e)
+
+
+}
+
+function showError(e){$("#errorbox p").text(e),$("#errorbox").show(),$("#resultbox").hide()}
+
+function setEndOfContenteditable(e){var t,n,a=document.getElementById(e);document.createRange?((t=document.createRange()).selectNodeContents(a),t.collapse(!1),(n=window.getSelection()).removeAllRanges(),n.addRange(t)):document.selection&&((t=document.body.createTextRange()).moveToElementText(a),t.collapse(!1),t.select())}function setLanguage(e){language!=e&&(language=e,$("span.lang").removeClass("active"),$("span.lang[data-lang="+e+"]").addClass("active"))}function escapeHTML(e){let t=document.createElement("div");return t.innerText=e,t.innerHTML}
+
+
+
+
+function submitTweet()
+{
+   var exInput = document.getElementById('exInput')
+  var TWEET = document.getElementById("editablefield").innerText
+  exInput.setAttribute('value', TWEET)
+  // console.log(TWEET)
+   // $("#resultbox").show();
+  // $("#resultpane").removeClass("typing");
+  // $("#resultpane").addClass("loading");
+ 
+  document.getElementById('exampleForm').submit()
+  // submitText();
+
+
+  // $("#resultpane").removeClass("typing"),$("#resultpane").addClass("loading");
+}
+
+function submitText()
+{
+
+  var e=document.getElementById(efn).innerText;
+
+  if(""==e)return;
+
+
+  $("#errorbox").hide(),$("#resultbox").show(),$("#resultpane").removeClass("typing"),
+
+  $("#resultpane").addClass("loading");
+
+
+  // var t=escapeHTML(e).replace(/\n/g,"<br/>");$("#"+efn).html(t);let n={text:e,lang:language,mode:"standard"};n=Object.assign({},n,credentials),$.post(endpoint+"/1.0/text/check.json",n).done(function(n){if($("#resultpane").removeClass("loading"),"success"==n.status){resetDicts(),$("#editablefield").addClass("nonewedits");var a=n.profanity.matches.concat(n.personal.matches).concat(n.link.matches);a.sort(function(e,t){return e.start-t.start});var s=0,r="",o=Array.from(e);for(i=0;i<a.length;i++){for("insult"==a[i].type&&(profanityDict.insult.has=!0),"discriminatory"==a[i].type&&(profanityDict.discriminatory.has=!0),"sexual"==a[i].type&&(profanityDict.sexual.has=!0),"inappropriate"==a[i].type&&(profanityDict.inappropriate.has=!0),"url"==a[i].type&&(linkDict.url.has=!0),"phone_number_us"!=a[i].type&&"phone_number_fr"!=a[i].type&&"phone_number_uk"!=a[i].type||(personalDict.phone.has=!0),"email"==a[i].type&&(personalDict.email.has=!0),"ipv4"!=a[i].type&&"ipv6"!=a[i].type||(personalDict.ip.has=!0),"grawlix"==a[i].type&&(profanityDict.grawlix.has=!0),"other_profanity"==a[i].type&&(profanityDict.other.has=!0);a[i].start>s;)r+=escapeHTML(o[s]),s+=1;for(r+='<span class="danger">';a[i].end+1>s;)r+=escapeHTML(o[s]),s+=1;r+="</span>"}for(;s<o.length;)r+=escapeHTML(o[s]),s+=1;var l=r.replace(/\n/g,"<br/>");l!=t&&($("#editablefield").html(l),setEndOfContenteditable("editablefield")),showResults()}else showError(n.error.message)}).fail(function(e){$("#resultpane").removeClass("loading");var t=e.responseJSON;void 0===t?showError("Connection error, please make sure you are connected"):"status"in t&&"success"!=t.status?showError(t.error.message):showError("Please try again")})
+  // submitTweet();
+
+}
+
+function getCharcount(){return $("#editablefield").text().length}
+
+function displayCharcount(e){
+
+  var t=getCharcount(),n=$("#editablefield");n.removeClass("reduce"),n.removeClass("reducemore"),t>=400?n.addClass("reducemore"):t>150&&n.addClass("reduce"),t<=.8*maxlength?$(".counter").html(""):t>maxlength?$(".counter").html('<span class="overflow">'+t+"</span> / "+maxlength):$(".counter").html(t+" / "+maxlength)
+}
+
+
+
+  $('#demoform').submit(function() {
+  // alert('Handler for .submit() called.');
+  submitTweet();
+  return false;
+  });
+
+  $(document).ready(function(){$.post(endpoint),$("#demoform").bind("input propertychange",function(){
+
+    $("#editablefield").removeClass("nonewedits"),
+    $("#demoform input").show()}),
+  // $("#demoform").submit(function(){return submitText(),!1}),
+  $("#tryanotherexample").click(function()
+    {return"en"!=language&&setLanguage("en"),example_index+=1,example_index%=examples.length,
+    $("#editablefield").text(examples[example_index]),submitText(),!1}),
+
+  $("#editablefield").keyup(function(e){13!=e.which&&16!=e.which&&17!=e.which&&18!=e.which&&19!=e.which&&20!=e.which&&37!=e.which&&38!=e.which&&39!=e.which&&40!=e.which&&displayCharcount(e)}),
+
+  $("#editablefield").keydown(function(e){13!=e.which&&16!=e.which&&17!=e.which&&18!=e.which&&19!=e.which&&20!=e.which&&37!=e.which&&38!=e.which&&39!=e.which&&40!=e.which&&($("#resultpane").addClass("typing"),displayCharcount(e))}),
+  
+
+  $("#editablefield").keypress(function(e){if(13==e.which&&!e.shiftKey)
+    return e.preventDefault(),!1;displayCharcount(e)})
+
+  ,setEndOfContenteditable("editablefield"),
+  $("kbd").click(function(){submitText()})
+  ,$("span.lang").click(function(){setLanguage($(this).attr("data-lang")),submitText()})
+
+});
+
+
+// Here we are sending the tweet on click of button to the backend
+  // const btn = document.document.getElementById('submitbutton');
+  // btn.addEventListener('click', function(event){ submitTweet();console.log('Button Clicked'); });
+
+
+</script>
+
+
+<script>
+
+//     !function(){function n(n,e){return n.classList?n.classList.contains(e):new RegExp("(^| )"+e+"( |$)","gi").test(n.className)}
+//      function e(n,e){n.classList?n.classList.remove(e):n.className=n.className.replace(new RegExp("(^|\\b)"+e.split(" ").join("|")+"(\\b|$)","gi")," ")}
+//      function t(n,e){n.classList?n.classList.add(e):n.className+=" "+e}
+
+//      function a(){!function(){var a=document.getElementById("menu-link");
+//      if(null!=a){var o=document.getElementById("mobile-nav-container");
+//      if(null!=o){a.addEventListener("click",function(e){return e.stopPropagation(),n(o,"active")||(t(o,"active"),t(document.body,"show-mobile-nav")),!1},!1);
+//      var i=document.getElementById("mobile-closemenu");
+//      null!=i&&i.addEventListener("click",function(n)
+//       {n.stopPropagation(),e(o,"active"),e(document.body,"show-mobile-nav")},!1)}}}(),o=document.getElementById("banner"),n(document.body,"fixed-banner")&&(i=!0,null!=o&&n(o,"transparent")&&(s=!0))}var o,i=!1,s=!1;"loading"!=document.readyState?a():document.addEventListener("DOMContentLoaded",a),window.onscroll=function(n){i&&s&&(window.scrollY>=40?e(o,"transparent"):t(o,"transparent"))}}();
+// (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-42589425-1', 'sightengine.com');ga('set', 'dimension1', 'visitor');ga('send', 'pageview');
+
+
+</script>
+
+
+<!-- <div style="display:none">
+    <script>/* <![CDATA[ */var google_conversion_id = 1030916123;var google_custom_params = window.google_tag_params;var google_remarketing_only = true;/* ]]> */
+    </script>
+        <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"></script>
+        <noscript>
+            <div style="display:inline;"><img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/1030916123/?guid=ON&amp;script=0"/></div>
+        </noscript>
+    </div> -->
+
+{% endraw %}
+{% endblock %}
