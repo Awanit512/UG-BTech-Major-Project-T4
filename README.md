@@ -16,6 +16,7 @@ Major Project Overleaf Draft For Proposal Can be found here  : https://www.overl
 
 <br />
 ML CODE KAGGLE CAN BE FOUND HERE : https://www.kaggle.com/awanitranjan/majorproject-cse2022/edit
+or Notebook redabale form can be found here  : https://www.kaggle.com/code/awanitranjan/majorproject-cse2022/data
 
 <br />
 
